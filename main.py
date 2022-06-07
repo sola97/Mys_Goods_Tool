@@ -17,6 +17,10 @@ import threading
 import uuid
 from ping3 import ping
 
+from config_parser import get_config
+config_path = get_config()
+
+# 网络请求的超时时间（商品和游戏账户详细信息查询）
 VERSION = "v1.4.2"
 """程序当前版本"""
 TIME_OUT = 5
@@ -142,13 +146,13 @@ class NtpTime():
         return time.time() + NtpTime.time_offset
 
 
-# 读取配置文件
+## 读取配置文件
 try:
     conf = configparser.RawConfigParser()
     try:
-        conf.read(get_file_path("config.ini"), encoding="utf-8")
+        conf.read(get_file_path(config_path), encoding="utf-8")
     except:
-        conf.read(get_file_path("config.ini"), encoding="utf-8-sig")
+        conf.read(get_file_path(config_path), encoding="utf-8-sig")
 except KeyboardInterrupt:
     print(to_log("WARN", "用户强制结束程序"))
     exit(1)
@@ -156,7 +160,6 @@ except:
     print(to_log("ERROR", "读取配置文件失败"))
     to_log("ERROR", traceback.format_exc())
     exit(1)
-
 
 class Good:
     """

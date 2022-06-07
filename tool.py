@@ -9,6 +9,8 @@ import configparser
 import requests.utils
 import ntplib
 import uuid
+from config_parser import get_config
+config_path = get_config()
 
 try:
     import pyperclip
@@ -325,10 +327,10 @@ def addressTool() -> None:
         try:
             conf.set("Config", "Address_ID", choice)
             try:
-                with open("config.ini", "w", encoding="utf-8") as config_file:
+                with open(config_path, "w", encoding="utf-8") as config_file:
                     conf.write(config_file)
             except:
-                with open("config.ini", "w", encoding="utf-8-sig") as config_file:
+                with open(config_path, "w", encoding="utf-8-sig") as config_file:
                     conf.write(config_file)
             print("> 配置文件写入成功(回车以返回功能选择界面)")
             input()
@@ -517,10 +519,10 @@ def cookieTool() -> None:
                 conf.set("Config", "Cookie", current_cookies)
 
                 try:
-                    with open("config.ini", "w", encoding="utf-8") as config_file:
+                    with open(config_path, "w", encoding="utf-8") as config_file:
                         conf.write(config_file)
                 except:
-                    with open("config.ini", "w", encoding="utf-8-sig") as config_file:
+                    with open(config_path, "w", encoding="utf-8-sig") as config_file:
                         conf.write(config_file)
 
                 print("> 配置文件写入成功(回车以返回功能选择界面)")
