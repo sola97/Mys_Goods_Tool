@@ -102,9 +102,9 @@ def readConfig():
     conf = configparser.RawConfigParser()
     try:
         try:
-            conf.read_file(open("config.ini", encoding="utf-8"))
+            conf.read_file(open(config_path, encoding="utf-8"))
         except:
-            conf.read_file(open("config.ini", encoding="utf-8-sig"))
+            conf.read_file(open(config_path, encoding="utf-8-sig"))
         return conf
     except KeyboardInterrupt:
         print("用户强制结束程序...")
@@ -706,10 +706,10 @@ def completeCookie() -> None:
                 raise
             conf.set("Config", "Cookie", origin_cookie)
             try:
-                with open("config.ini", "w", encoding="utf-8") as config_file:
+                with open(config_path, "w", encoding="utf-8") as config_file:
                     conf.write(config_file)
             except:
-                with open("config.ini", "w", encoding="utf-8-sig") as config_file:
+                with open(config_path, "w", encoding="utf-8-sig") as config_file:
                     conf.write(config_file)
             print("> 配置文件写入成功(回车以返回功能选择界面)")
             input()
@@ -891,10 +891,10 @@ def onekeyCookie() -> None:
                 raise
             conf.set("Config", "Cookie", result_cookie)
             try:
-                with open("config.ini", "w", encoding="utf-8") as config_file:
+                with open(config_path, "w", encoding="utf-8") as config_file:
                     conf.write(config_file)
             except:
-                with open("config.ini", "w", encoding="utf-8-sig") as config_file:
+                with open(config_path, "w", encoding="utf-8-sig") as config_file:
                     conf.write(config_file)
             print("> 配置文件写入成功(回车以返回功能选择界面)")
             input()
